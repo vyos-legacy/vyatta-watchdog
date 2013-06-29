@@ -12,6 +12,5 @@ Depends: vyatta-cfg-system,
  vyatta-op,
  watchdog
 Replaces: vyatta-watchdog
-
 Description: Vyatta watchdog configuration
  Vyatta watchdog configuration utiliites, templates and scripts.

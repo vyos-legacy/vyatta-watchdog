@@ -3,14 +3,15 @@ Section: contrib/net
 Priority: extra
 Maintainer: SO3 Group <maintainers@so3group.net>
 Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 5), autotools-dev
 
 Package: vyatta-watchdog
 Architecture: all
-Build-Depends: debhelper (>= 5), autotools-dev
 Depends: vyatta-cfg-system,
  vyatta-cfg,
  vyatta-op,
- watchdog
+ watchdog,
+ ${misc:Depends}
 Replaces: vyatta-watchdog
 Description: Vyatta watchdog configuration
  Vyatta watchdog configuration utiliites, templates and scripts.

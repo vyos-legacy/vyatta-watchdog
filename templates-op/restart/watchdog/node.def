@@ -1,0 +1,3 @@
+help: Restart watchdog service
+
+run: sudo /opt/vyatta/bin/sudo-users/vyatta-restart-watchdog.sh

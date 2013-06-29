@@ -1,0 +1,2 @@
+vyatta-watchdog: file-in-unusual-dir
+vyatta-watchdog: dir-or-file-in-opt

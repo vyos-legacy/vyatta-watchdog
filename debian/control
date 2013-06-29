@@ -5,7 +5,7 @@ Maintainer: SO3 Group <maintainers@so3group.net>
 Standards-Version: 3.7.2
 
 Package: vyatta-watchdog
-Architecture: any
+Architecture: all
 Build-Depends: debhelper (>= 5), autotools-dev
 Depends: vyatta-cfg-system,
  vyatta-cfg,

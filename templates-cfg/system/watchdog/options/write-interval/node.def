@@ -1,0 +1,4 @@
+type: u32
+syntax:expression: $VAR(@) >= 1 && $VAR(@) <= 60; "Timer reset interval should be between 1 and 60 seconds"
+help: Hardware watchdog timer reset interval
+

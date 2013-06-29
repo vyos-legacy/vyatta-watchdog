@@ -1,0 +1,5 @@
+multi:
+type: ipv4
+help: IP address to ping
+
+

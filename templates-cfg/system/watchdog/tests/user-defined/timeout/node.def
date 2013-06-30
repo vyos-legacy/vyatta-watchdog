@@ -1,4 +1,4 @@
 type: u32
 default: 0
 help: Test program execution timeout (0 for unlimited)
-val_help: u32; Timeout in seconds
+val_help: u32:0-60; Timeout in seconds (0 for umlimited)

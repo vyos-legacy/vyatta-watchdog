@@ -60,7 +60,9 @@ Unless you are having problems with specific driver,
 you likely have no reason to change it. Default is one second.
 
 Example:
+
 set system watchdog options realtime
+
 set system watchdog options reset-interval 10
 
 ## repair
@@ -77,7 +79,9 @@ If it terminates with non-zero exit code, the system
 also reboot.
 
 Example:
+
 set system watchdog repair executable /config/scripts/repair
+
 set system watchdog repair timeout 60
 
 ## tests
@@ -100,15 +104,17 @@ PID files too.
 
 #### service
 
-bgp             Border Gateway Protocol
-ntp             Network Time Protocol 
-ospf            Open Shortest Path First protocol version 2
-rip             Routing Information Protocol version 2 daemon
-routing-engine  Routing control plane (Zebra, actually)
-ssh             Secure SHell
+    bgp             Border Gateway Protocol
+    ntp             Network Time Protocol 
+    ospf            Open Shortest Path First protocol version 2
+    rip             Routing Information Protocol version 2 daemon
+    routing-engine  Routing control plane (Zebra, actually)
+    ssh             Secure SHell
 
 Example:
+
 set system watchdog tests process service bgp
+
 set system watchdog tests process service routing-engine
 
 ### user-defined pid-file
@@ -116,17 +122,19 @@ set system watchdog tests process service routing-engine
 Custom PID file.
 
 Example:
+
 set system watchdog tests process user-defined pid-file /var/run/mydaemon.pid
 
 ### system-load
 
 Check system load in specified interval.
 
-interval-1   Load average for the last minute
-interval-5   Load average for the last 5 minutes
-interval-15  Load average for the last 15 minutes
+    interval-1   Load average for the last minute
+    interval-5   Load average for the last 5 minutes
+    interval-15  Load average for the last 15 minutes
 
 Example:
+
 set system watchdog tests system-load interval-5 10
 
 ### user-defined
@@ -143,7 +151,9 @@ it is also considered unsuccessfull.
 Default timeout is 0 (unlimited).
 
 Example:
+
 set system watchdog tests user-defined executable /config/scripts/mytest
+
 set system watchdog tests user-defined timeout 30
 
 ## Complete example

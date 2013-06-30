@@ -28,6 +28,8 @@ Configuration commands:
               ssh
             user-defined
               pid-file <file path>
+              pid-file <another file path>
+              ...
           system-load
             interval-1  <integer>
             interval-5  <integer>

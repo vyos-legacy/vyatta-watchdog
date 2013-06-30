@@ -1,3 +1,9 @@
+vyatta-watchdog (1.1) unstable; urgency=low
+
+  * Fix debian standards version.
+
+ -- Daniil Baturin <daniil@baturin.org>  Sun, 30 Jun 2013 06:35:17 -0700
+
 vyatta-watchdog (1.0) unstable; urgency=low
 
   * Initial Release.

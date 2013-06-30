@@ -171,6 +171,17 @@ function config_repair
     write_cfg "repair-timeout = $REPAIR_TIMEOUT"
 }
 
+# Setup daemon options
+function config_options
+{
+    if $API exists $WDT_PATH options realtime; then
+        write_cfg "realtime = yes"
+    fi
+
+    RESET_INTERVAL=$($API returnValue $WDT_PATH options reset-interval)
+    write_cfg "interval = $RESET_INTERVAL"
+}
+
 ########### Main ###########
 
 # system watchdog driver
@@ -215,4 +226,9 @@ fi
 # system watchdog repair
 if $API exists $WDT_PATH repair; then
     config_repair
+fi
+
+# system watchdog options
+if $API exists $WDT_PATH options; then
+    config_options
 fi

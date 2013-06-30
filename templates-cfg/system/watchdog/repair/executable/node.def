@@ -1,2 +1,7 @@
 type: txt
-help: Path to repair executable
+syntax:expression: exec
+    "if [ ! -x $VAR(@) ]; then \
+        echo \"File $VAR(@) does not exist or is not executable\"; \
+        exit 1; \
+    fi; "
+help: Path to repair program executable

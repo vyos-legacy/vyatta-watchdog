@@ -147,6 +147,21 @@ function config_user_defined
     write_cfg "test-timeout = $TEST_TIMEOUT"
 }
 
+# Setup repair program
+function config_repair
+{
+    REPAIR_EXECUTABLE=$($API returnValue $WDT_PATH repair executable)
+    REPAIR_TIMEOUT=$($API returnValue $WDT_PATH repair timeout)
+
+    if [ -z $REPAIR_EXECUTABLE ]; then
+        echo "Repair executable must be defined"
+        exit 1
+    fi
+
+    write_cfg "repair-binary = $REPAIR_EXECUTABLE"
+    write_cfg "repair-timeout = $REPAIR_TIMEOUT"
+}
+
 # system watchdog driver
 if $API exists $WDT_PATH driver; then
     load_module
@@ -178,4 +193,9 @@ if $API exists $WDT_PATH tests; then
     if $API exists $WDT_PATH tests user-defined; then
         config_user_defined
     fi
+fi
+
+# system watchdog repair
+if $API exists $WDT_PATH repair; then
+    config_repair
 fi

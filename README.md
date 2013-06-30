@@ -7,34 +7,34 @@ Depends on Linux watchdog daemon (available from the repos).
 
 Configuration commands:
 
-system
-  watchdog
-    driver <module name>
-    options
-      realtime
-      reset-interval <1-60, seconds>
-    repair
-      executable <file path>
-      timeout <integer, seconds>
-    tests
-      free-memory <integer, megabytes>
-      process
-        service
-          bgp
-          ntp
-          ospf
-          rip
-          routing-engine
-          ssh
-        user-defined
-          pid-file <file path>
-      system-load
-        interval-1  <integer>
-        interval-5  <integer>
-        interval-15 <integer>
-      user-defined
-        executable <file path>
-        timeout <integer, seconds>
+    system
+      watchdog
+        driver <module name>
+        options
+          realtime
+          reset-interval <1-60, seconds>
+        repair
+          executable <file path>
+          timeout <integer, seconds>
+        tests
+          free-memory <integer, megabytes>
+          process
+            service
+              bgp
+              ntp
+              ospf
+              rip
+              routing-engine
+              ssh
+            user-defined
+              pid-file <file path>
+          system-load
+            interval-1  <integer>
+            interval-5  <integer>
+            interval-15 <integer>
+          user-defined
+            executable <file path>
+            timeout <integer, seconds>
     
 ## driver
 
@@ -148,23 +148,23 @@ set system watchdog tests user-defined timeout 30
 
 ## Complete example
 
-system {
-     watchdog {
-         options {
-             realtime
-         }
-         tests {
-             free-memory 50
-             process {
-                 service {
-                     routing-engine
-                     ssh
-                 }
+    system {
+         watchdog {
+             options {
+                 realtime
              }
-             system-load {
-                 interval-5 10
+             tests {
+                 free-memory 50
+                 process {
+                     service {
+                         routing-engine
+                         ssh
+                     }
+                 }
+                 system-load {
+                     interval-5 10
+                 }
              }
          }
      }
- }
 

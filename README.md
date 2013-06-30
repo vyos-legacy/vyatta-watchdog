@@ -119,7 +119,8 @@ set system watchdog tests process service routing-engine
 
 ### user-defined pid-file
 
-Custom PID file.
+Custom PID file. This option can be set multiple times, for
+each PID file you need.
 
 Example:
 

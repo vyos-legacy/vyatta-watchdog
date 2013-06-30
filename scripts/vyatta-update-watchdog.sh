@@ -12,7 +12,7 @@ WDT_CONFIG=/etc/watchdog.conf
 # it during commit
 function load_module
 {
-    MODULE=`$API returnValue $WDT_PATH driver`
+    MODULE=$($API returnValue $WDT_PATH driver)
     lsmod | grep $MODULE > /dev/null
     if [ $? != 0 ]; then
         sudo modprobe $MODULE
@@ -37,7 +37,7 @@ function write_cfg
 function config_freemem
 {
     MEMORY_MB=$($API returnValue system watchdog tests free-memory)
-    PAGE_SIZE=`getconf PAGESIZE`
+    PAGE_SIZE=$(getconf PAGESIZE)
     MEMORY_PAGES=$(($MEMORY_MB*1024*1024/$PAGE_SIZE))
     write_cfg "min-memory = $MEMORY_PAGES"
 }
@@ -59,8 +59,8 @@ function config_max_load
 
     # tests system-load interval-15
     if $API exists $WDT_PATH tests system-load interval-15; then
-        LOAD_15=`$API returnValue $WDT_PATH tests system-load interval-15`
-        write_cfg "max-load-1 = $LOAD_15"
+        LOAD_15=$($API returnValue $WDT_PATH tests system-load interval-15)
+        write_cfg "max-load-15 = $LOAD_15"
     fi
 }
 
@@ -91,14 +91,11 @@ function config_user_defined
 }
 
 # system watchdog driver
-$API exists $WDT_PATH driver
-if [ $? == 0 ]; then
+if $API exists $WDT_PATH driver; then
     load_module
 fi
 
-
 ## system watchdog tests
-#$API exists $WDT_PATH tests
 if $API exists $WDT_PATH tests; then
     # system watchdog tests free-memory
     if $API exists $WDT_PATH tests free-memory; then

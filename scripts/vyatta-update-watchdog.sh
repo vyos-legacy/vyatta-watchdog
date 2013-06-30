@@ -75,6 +75,63 @@ function config_ping
     done
 }
 
+# Setup process test
+function config_process
+{
+    # Processes that can render the system
+    # unusable or inaccessible in case they fail.
+    BGPD_PID="/var/run/quagga/bgpd.pid"
+    OSPFD_PID="/var/run/quagga/ospfd.pid"
+    OSPF6D_PID="/var/run/quagga/ospf6d.pid"
+    RIPD_PID="/var/run/quagga/ripd.pid"
+    ZEBRA_PID="/var/run/quagga/zebra.pid"
+    SSHD_PID="/var/run/sshd.pid"
+
+    # On systems with no real time clock
+    # absense of working NTP _can_ render
+    # the system unusable in case it relies
+    # on cryptographic algorithms like Kerberos
+    # or SSL that require accurate system time
+    NTPD_PID="/var/run/ntpd.pid"
+
+    # Predefined processes
+    if $API exists $WDT_PATH tests process service bgp; then
+        write_cfg "pidfile = $BGPD_PID"
+    fi
+
+    if $API exists $WDT_PATH tests process service ospf; then
+        write_cfg "pidfile = $OSPFD_PID"
+    fi
+
+    if $API exists $WDT_PATH tests process service ospf6; then
+        write_cfg "pidfile = $OSPF6_PID"
+    fi
+
+    if $API exists $WDT_PATH tests process service rip; then
+        write_cfg "pidfile = $RIPD_PID"
+    fi
+
+    if $API exists $WDT_PATH tests process service routing-engine; then
+        write_cfg "pidfile = $ZEBRA_PID"
+    fi
+
+    if $API exists $WDT_PATH tests process service ssh; then
+        write_cfg "pidfile = $SSHD_PID"
+    fi
+
+    if $API exists $WDT_PATH tests process service ntp; then
+        write_cfg "pidfile = $NTPD_PID"
+    fi
+
+    # User defined processes
+    pid_list=$($API returnValues $WDT_PATH tests process user-defined pid-file)
+    eval "PID_FILES=($pid_list)"
+
+    for i in "${PID_FILES[@]}"; do
+        write_cfg "pidfile = $i"
+    done
+}
+
 # Setup user defined test
 function config_user_defined
 {
@@ -110,6 +167,11 @@ if $API exists $WDT_PATH tests; then
     # system watchdog tests ping
     if $API exists $WDT_PATH tests ping; then
         config_ping
+    fi
+
+    # system watchdog tests process
+    if $API exists $WDT_PATH tests process; then
+        config_process
     fi
 
     # system watchdog tests user-defined

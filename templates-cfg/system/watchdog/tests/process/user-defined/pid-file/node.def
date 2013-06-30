@@ -1,0 +1,10 @@
+multi:
+type: txt
+syntax:expression: exec
+    "if [ ! -r $VAR(@) ]; then \
+        echo \"File $VAR(@) does not exist\"; \
+        exit 1; \
+    fi; "
+help: Process PID file
+val_help: txt; Path to the process PID file
+

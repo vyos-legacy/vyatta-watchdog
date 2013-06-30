@@ -1,3 +1,1 @@
-type: txt
-help: Process PID file
-val_help: txt; Path to the process PID file
+help: User-defined process tests

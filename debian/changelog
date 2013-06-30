@@ -1,3 +1,9 @@
+vyatta-watchdog (1.0.1) unstable; urgency=low
+
+  * Another attempt to fix versioning.
+
+ -- Daniil Baturin <daniil@baturin.org>  Sun, 30 Jun 2013 10:21:21 -0700
+
 vyatta-watchdog (1.0.0) unstable; urgency=low
 
   * Initial functional release.

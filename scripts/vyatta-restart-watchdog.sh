@@ -3,6 +3,6 @@
 if cli-shell-api existsActive system watchdog; then
    /etc/init.d/watchdog restart
 else
-   echo "Watchdog is not running"
+   echo "Watchdog is not configured"
 fi
 

@@ -104,7 +104,7 @@ bgp             Border Gateway Protocol
 ntp             Network Time Protocol 
 ospf            Open Shortest Path First protocol version 2
 rip             Routing Information Protocol version 2 daemon
-routing-engine  Routing control plane
+routing-engine  Routing control plane (Zebra, actually)
 ssh             Secure SHell
 
 Example:
@@ -138,7 +138,7 @@ othersie it's unsuccessfull. If the test is unsuccessfull,
 action (reboot or repair program execution) is taken.
 
 If tests fails to complete before timeout is exceeded,
-it also considered unsuccessfull.
+it is also considered unsuccessfull.
 
 Default timeout is 0 (unlimited).
 

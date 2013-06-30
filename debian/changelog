@@ -1,36 +1,6 @@
-vyatta-watchdog (0.0.6) unstable; urgency=low
+vyatta-watchdog (1.0.0) unstable; urgency=low
 
-  * Try to fix versioning.
-
- -- Daniil Baturin <daniil@baturin.org>  Sun, 30 Jun 2013 10:05:44 -0700
-
-vyatta-watchdog (0.0.5) unstable; urgency=low
-
-  * Fix packaging copyrights.
-
- -- Daniil Baturin <daniil@baturin.org>  Sun, 30 Jun 2013 09:58:00 -0700
-
-vyatta-watchdog (0.0.4) unstable; urgency=low
-
-  * Fix documentation formatting.
-
- -- Daniil Baturin <daniil@baturin.org>  Sun, 30 Jun 2013 08:39:52 -0700
-
-vyatta-watchdog (0.0.3) unstable; urgency=low
-
-  * Add some documentation.
-
- -- Daniil Baturin <daniil@baturin.org>  Sun, 30 Jun 2013 08:34:09 -0700
-
-vyatta-watchdog (0.0.2) unstable; urgency=low
-
-  * Fix debian standards version.
-
- -- Daniil Baturin <daniil@baturin.org>  Sun, 30 Jun 2013 06:35:17 -0700
-
-vyatta-watchdog (0.0.1) unstable; urgency=low
-
-  * Initial Release.
+  * Initial functional release.
 
  -- Daniil Baturin <daniil@baturin.org>  Sat, 29 Jun 2013 12:31:53 -0700
 

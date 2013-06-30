@@ -3,6 +3,7 @@ help: Watchdog settings
 end:
     if [ ${COMMIT_ACTION} == DELETE ]; then
         sudo /etc/init.d/watchdog stop
+        sudo sh -c "echo '' > /etc/watchdog.conf"
     else
         /opt/vyatta/sbin/vyatta-update-watchdog.sh || exit 1
         sudo /etc/init.d/watchdog restart

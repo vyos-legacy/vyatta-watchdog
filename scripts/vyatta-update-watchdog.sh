@@ -29,59 +29,55 @@ function write_cfg
     echo $1
 }
 
-# system watchdog driver
-$API exists $WDT_PATH driver
-if [ $? == 0 ]; then
-    load_module
-fi
-
-## system watchdog tests
-
-# system watchdog tests free-memory
-# watchdog daemon (lazy butt) counts memory in pages
-# we don't want to make the user learn what a page is
-# so we convert megabytes to the current system pages
-$API exists $WDT_PATH tests free-memory
-if [ $? == 0 ]; then
-    MEMORY_MB=`$API returnValue system watchdog tests free-memory`
+# Setup free memory test
+#
+# Watchdog daemon (lazy butt) counts memory in pages.
+# We don't want to make the user learn what a page is
+# so we convert megabytes to the current system pages.
+function config_freemem
+{
+    MEMORY_MB=$($API returnValue system watchdog tests free-memory)
     PAGE_SIZE=`getconf PAGESIZE`
     MEMORY_PAGES=$(($MEMORY_MB*1024*1024/$PAGE_SIZE))
     write_cfg "min-memory = $MEMORY_PAGES"
-fi
+}
 
-# system watchdog tests system-load
-$API exists $WDT_PATH tests system-load interval-1
-if [ $? == 0 ]; then
-    LOAD_1=`$API returnValue $WDT_PATH tests system-load interval-1`
-    write_cfg "max-load-1 = $LOAD_1"
-fi
+# Setup max load test
+function config_max_load
+{
+    # tests system-load interval-1
+    if $API exists $WDT_PATH tests system-load interval-1; then
+        LOAD_1=$($API returnValue $WDT_PATH tests system-load interval-1)
+        write_cfg "max-load-1 = $LOAD_1"
+    fi
 
-$API exists $WDT_PATH tests system-load interval-5
-if [ $? == 0 ]; then
-    LOAD_5=`$API returnValue $WDT_PATH tests system-load interval-5`
-    write_cfg "max-load-5 = $LOAD_5"
-fi
+    # tests system-load interval-5
+    if $API exists $WDT_PATH tests system-load interval-5; then
+        LOAD_5=$($API returnValue $WDT_PATH tests system-load interval-5)
+        write_cfg "max-load-5 = $LOAD_5"
+    fi
 
-$API exists $WDT_PATH tests system-load interval-15
-if [ $? == 0 ]; then
-    LOAD_15=`$API returnValue $WDT_PATH tests system-load interval-15`
-    write_cfg "max-load-1 = $LOAD_15"
-fi
+    # tests system-load interval-15
+    if $API exists $WDT_PATH tests system-load interval-15; then
+        LOAD_15=`$API returnValue $WDT_PATH tests system-load interval-15`
+        write_cfg "max-load-1 = $LOAD_15"
+    fi
+}
 
-# system watchdog tests ping
-$API exists $WDT_PATH tests ping
-if [ $? == 0 ]; then
+# Setup ping test
+function config_ping
+{
     ping_list=$($API returnValues $WDT_PATH tests ping address)
     eval "PING_HOSTS=($ping_list)"
 
     for i in "${PING_HOSTS[@]}"; do
         write_cfg "ping = $i"
     done
-fi
+}
 
-# system watchdog tests user-defined
-$API exists $WDT_PATH tests user-defined
-if [ $? == 0 ]; then
+# Setup user defined test
+function config_user_defined
+{
     TEST_EXECUTABLE=$($API returnValue $WDT_PATH tests user-defined executable)
     TEST_TIMEOUT=$($API returnValue $WDT_PATH tests user-defined timeout)
 
@@ -92,4 +88,35 @@ if [ $? == 0 ]; then
 
     write_cfg "test-binary = $TEST_EXECUTABLE"
     write_cfg "test-timeout = $TEST_TIMEOUT"
+}
+
+# system watchdog driver
+$API exists $WDT_PATH driver
+if [ $? == 0 ]; then
+    load_module
+fi
+
+
+## system watchdog tests
+#$API exists $WDT_PATH tests
+if $API exists $WDT_PATH tests; then
+    # system watchdog tests free-memory
+    if $API exists $WDT_PATH tests free-memory; then
+        config_freemem
+    fi
+
+    # system watchdog tests system-load
+    if $API exists $WDT_PATH tests system-load; then
+        config_max_load
+    fi
+
+    # system watchdog tests ping
+    if $API exists $WDT_PATH tests ping; then
+        config_ping
+    fi
+
+    # system watchdog tests user-defined
+    if $API exists $WDT_PATH tests user-defined; then
+        config_user_defined
+    fi
 fi

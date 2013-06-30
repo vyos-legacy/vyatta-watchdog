@@ -208,9 +208,14 @@ if $API exists $WDT_PATH tests; then
     fi
 
     # system watchdog tests ping
-    if $API exists $WDT_PATH tests ping; then
-        config_ping
-    fi
+    #
+    # There is a bug in watchdog daemon that
+    # makes ping test unusable on some configurations.
+    # Disabled until fix is available.
+    #
+    #if $API exists $WDT_PATH tests ping; then
+    #    config_ping
+    #fi
 
     # system watchdog tests process
     if $API exists $WDT_PATH tests process; then

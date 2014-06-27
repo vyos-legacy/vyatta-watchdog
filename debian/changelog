@@ -1,3 +1,17 @@
+vyatta-watchdog (1.0.2+vyos1+helium2) unstable; urgency=low
+
+  * Fix Markdown documentation formatting.
+  * Documentation, add note that pid-file is a multi node.
+  * Documentation, some clarification on multi.
+
+ -- Daniil Baturin <daniil@baturin.org>  Fri, 27 Jun 2014 23:05:45 +0200
+
+vyatta-watchdog (1.0.2+vyos1+helium1) unstable; urgency=low
+
+  * VyOS integration.
+
+ -- Daniil Baturin <daniil@baturin.org>  Sat, 28 Jun 2014 04:04:20 -0700
+
 vyatta-watchdog (1.0.2) unstable; urgency=low
 
   * Add README.md link to README.

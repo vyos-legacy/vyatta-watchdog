@@ -1,7 +1,7 @@
 Source: vyatta-watchdog
 Section: contrib/net
 Priority: extra
-Maintainer: SO3 Group <maintainers@so3group.net>
+Maintainer: VyOS Package Maintainers <maintainers@vyos.net>
 Standards-Version: 3.9.1
 Build-Depends: debhelper (>= 5), autotools-dev, autoconf
 

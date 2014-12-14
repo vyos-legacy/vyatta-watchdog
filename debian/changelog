@@ -1,3 +1,12 @@
+vyatta-watchdog (1.0.2+vyos1+helium3) unstable; urgency=low
+
+  [ Daniil Baturin ]
+  * Update package maintainer address
+  
+  [ Alex Harpin ]
+
+ -- Alex Harpin <development@landsofshadow.co.uk>  Sun, 14 Dec 2014 08:51:47 +0000
+ 
 vyatta-watchdog (1.0.2+vyos1+helium2) unstable; urgency=low
 
   * Fix Markdown documentation formatting.

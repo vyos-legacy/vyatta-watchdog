@@ -3,7 +3,7 @@ Section: contrib/net
 Priority: extra
 Maintainer: VyOS Package Maintainers <maintainers@vyos.net>
 Standards-Version: 3.9.1
-Build-Depends: debhelper (>= 5), autotools-dev, autoconf
+Build-Depends: debhelper (>= 5), autotools-dev, autoconf, automake, cpio
 
 Package: vyatta-watchdog
 Architecture: all
